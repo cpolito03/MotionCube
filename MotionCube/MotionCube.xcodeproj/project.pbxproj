@@ -1,0 +1,507 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7B0E0B4A19257DAF00483A60 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0E0B4919257DAF00483A60 /* Foundation.framework */; };
+		7B0E0B4C19257DAF00483A60 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0E0B4B19257DAF00483A60 /* CoreGraphics.framework */; };
+		7B0E0B4E19257DAF00483A60 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0E0B4D19257DAF00483A60 /* UIKit.framework */; };
+		7B0E0B5019257DAF00483A60 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0E0B4F19257DAF00483A60 /* CoreData.framework */; };
+		7B0E0B5619257DAF00483A60 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7B0E0B5419257DAF00483A60 /* InfoPlist.strings */; };
+		7B0E0B5819257DAF00483A60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0E0B5719257DAF00483A60 /* main.m */; };
+		7B0E0B5F19257DAF00483A60 /* MotionCube.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7B0E0B5D19257DAF00483A60 /* MotionCube.xcdatamodeld */; };
+		7B0E0B6119257DAF00483A60 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B0E0B6019257DAF00483A60 /* Images.xcassets */; };
+		7B0E0B6819257DB000483A60 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0E0B6719257DB000483A60 /* XCTest.framework */; };
+		7B0E0B6919257DB000483A60 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0E0B4919257DAF00483A60 /* Foundation.framework */; };
+		7B0E0B6A19257DB000483A60 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0E0B4D19257DAF00483A60 /* UIKit.framework */; };
+		7B0E0B6B19257DB000483A60 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B0E0B4F19257DAF00483A60 /* CoreData.framework */; };
+		7B0E0B7319257DB000483A60 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7B0E0B7119257DB000483A60 /* InfoPlist.strings */; };
+		7B0E0B7519257DB000483A60 /* MotionCubeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0E0B7419257DB000483A60 /* MotionCubeTests.m */; };
+		7B0E0B8619257E1200483A60 /* Accelerometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0E0B7F19257E1200483A60 /* Accelerometer.m */; };
+		7B0E0B8719257E1200483A60 /* Axes.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0E0B8119257E1200483A60 /* Axes.m */; };
+		7B0E0B8819257E1200483A60 /* ThreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0E0B8319257E1200483A60 /* ThreeViewController.m */; };
+		7B0E0B8919257E1200483A60 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0E0B8519257E1200483A60 /* Utility.m */; };
+		7B0E0B8C19257E4F00483A60 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0E0B8B19257E4F00483A60 /* AppDelegate.m */; };
+		7B0E0B8F19259AAF00483A60 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B0E0B8D19259AAF00483A60 /* start.png */; };
+		7B0E0B9019259AAF00483A60 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B0E0B8E19259AAF00483A60 /* stop.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7B0E0B6C19257DB000483A60 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7B0E0B3E19257DAF00483A60 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B0E0B4519257DAF00483A60;
+			remoteInfo = MotionCube;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7B0E0B4619257DAF00483A60 /* MotionCube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MotionCube.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B0E0B4919257DAF00483A60 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7B0E0B4B19257DAF00483A60 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		7B0E0B4D19257DAF00483A60 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7B0E0B4F19257DAF00483A60 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		7B0E0B5319257DAF00483A60 /* MotionCube-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MotionCube-Info.plist"; sourceTree = "<group>"; };
+		7B0E0B5519257DAF00483A60 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7B0E0B5719257DAF00483A60 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		7B0E0B5919257DAF00483A60 /* MotionCube-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MotionCube-Prefix.pch"; sourceTree = "<group>"; };
+		7B0E0B5E19257DAF00483A60 /* MotionCube.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MotionCube.xcdatamodel; sourceTree = "<group>"; };
+		7B0E0B6019257DAF00483A60 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		7B0E0B6619257DB000483A60 /* MotionCubeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MotionCubeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B0E0B6719257DB000483A60 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		7B0E0B7019257DB000483A60 /* MotionCubeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MotionCubeTests-Info.plist"; sourceTree = "<group>"; };
+		7B0E0B7219257DB000483A60 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		7B0E0B7419257DB000483A60 /* MotionCubeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MotionCubeTests.m; sourceTree = "<group>"; };
+		7B0E0B7E19257E1200483A60 /* Accelerometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Accelerometer.h; sourceTree = "<group>"; };
+		7B0E0B7F19257E1200483A60 /* Accelerometer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Accelerometer.m; sourceTree = "<group>"; };
+		7B0E0B8019257E1200483A60 /* Axes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Axes.h; sourceTree = "<group>"; };
+		7B0E0B8119257E1200483A60 /* Axes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Axes.m; sourceTree = "<group>"; };
+		7B0E0B8219257E1200483A60 /* ThreeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreeViewController.h; sourceTree = "<group>"; };
+		7B0E0B8319257E1200483A60 /* ThreeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreeViewController.m; sourceTree = "<group>"; };
+		7B0E0B8419257E1200483A60 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		7B0E0B8519257E1200483A60 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
+		7B0E0B8A19257E4F00483A60 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		7B0E0B8B19257E4F00483A60 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		7B0E0B8D19259AAF00483A60 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
+		7B0E0B8E19259AAF00483A60 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7B0E0B4319257DAF00483A60 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B0E0B4C19257DAF00483A60 /* CoreGraphics.framework in Frameworks */,
+				7B0E0B5019257DAF00483A60 /* CoreData.framework in Frameworks */,
+				7B0E0B4E19257DAF00483A60 /* UIKit.framework in Frameworks */,
+				7B0E0B4A19257DAF00483A60 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B0E0B6319257DB000483A60 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B0E0B6819257DB000483A60 /* XCTest.framework in Frameworks */,
+				7B0E0B6B19257DB000483A60 /* CoreData.framework in Frameworks */,
+				7B0E0B6A19257DB000483A60 /* UIKit.framework in Frameworks */,
+				7B0E0B6919257DB000483A60 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7B0E0B3D19257DAF00483A60 = {
+			isa = PBXGroup;
+			children = (
+				7B0E0B5119257DAF00483A60 /* MotionCube */,
+				7B0E0B6E19257DB000483A60 /* MotionCubeTests */,
+				7B0E0B4819257DAF00483A60 /* Frameworks */,
+				7B0E0B4719257DAF00483A60 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7B0E0B4719257DAF00483A60 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7B0E0B4619257DAF00483A60 /* MotionCube.app */,
+				7B0E0B6619257DB000483A60 /* MotionCubeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7B0E0B4819257DAF00483A60 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7B0E0B4919257DAF00483A60 /* Foundation.framework */,
+				7B0E0B4B19257DAF00483A60 /* CoreGraphics.framework */,
+				7B0E0B4D19257DAF00483A60 /* UIKit.framework */,
+				7B0E0B4F19257DAF00483A60 /* CoreData.framework */,
+				7B0E0B6719257DB000483A60 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7B0E0B5119257DAF00483A60 /* MotionCube */ = {
+			isa = PBXGroup;
+			children = (
+				7B0E0B8D19259AAF00483A60 /* start.png */,
+				7B0E0B8E19259AAF00483A60 /* stop.png */,
+				7B0E0B8A19257E4F00483A60 /* AppDelegate.h */,
+				7B0E0B8B19257E4F00483A60 /* AppDelegate.m */,
+				7B0E0B7E19257E1200483A60 /* Accelerometer.h */,
+				7B0E0B7F19257E1200483A60 /* Accelerometer.m */,
+				7B0E0B8019257E1200483A60 /* Axes.h */,
+				7B0E0B8119257E1200483A60 /* Axes.m */,
+				7B0E0B8219257E1200483A60 /* ThreeViewController.h */,
+				7B0E0B8319257E1200483A60 /* ThreeViewController.m */,
+				7B0E0B8419257E1200483A60 /* Utility.h */,
+				7B0E0B8519257E1200483A60 /* Utility.m */,
+				7B0E0B6019257DAF00483A60 /* Images.xcassets */,
+				7B0E0B5D19257DAF00483A60 /* MotionCube.xcdatamodeld */,
+				7B0E0B5219257DAF00483A60 /* Supporting Files */,
+			);
+			path = MotionCube;
+			sourceTree = "<group>";
+		};
+		7B0E0B5219257DAF00483A60 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7B0E0B5319257DAF00483A60 /* MotionCube-Info.plist */,
+				7B0E0B5419257DAF00483A60 /* InfoPlist.strings */,
+				7B0E0B5719257DAF00483A60 /* main.m */,
+				7B0E0B5919257DAF00483A60 /* MotionCube-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		7B0E0B6E19257DB000483A60 /* MotionCubeTests */ = {
+			isa = PBXGroup;
+			children = (
+				7B0E0B7419257DB000483A60 /* MotionCubeTests.m */,
+				7B0E0B6F19257DB000483A60 /* Supporting Files */,
+			);
+			path = MotionCubeTests;
+			sourceTree = "<group>";
+		};
+		7B0E0B6F19257DB000483A60 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				7B0E0B7019257DB000483A60 /* MotionCubeTests-Info.plist */,
+				7B0E0B7119257DB000483A60 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7B0E0B4519257DAF00483A60 /* MotionCube */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B0E0B7819257DB000483A60 /* Build configuration list for PBXNativeTarget "MotionCube" */;
+			buildPhases = (
+				7B0E0B4219257DAF00483A60 /* Sources */,
+				7B0E0B4319257DAF00483A60 /* Frameworks */,
+				7B0E0B4419257DAF00483A60 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MotionCube;
+			productName = MotionCube;
+			productReference = 7B0E0B4619257DAF00483A60 /* MotionCube.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7B0E0B6519257DB000483A60 /* MotionCubeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7B0E0B7B19257DB000483A60 /* Build configuration list for PBXNativeTarget "MotionCubeTests" */;
+			buildPhases = (
+				7B0E0B6219257DB000483A60 /* Sources */,
+				7B0E0B6319257DB000483A60 /* Frameworks */,
+				7B0E0B6419257DB000483A60 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7B0E0B6D19257DB000483A60 /* PBXTargetDependency */,
+			);
+			name = MotionCubeTests;
+			productName = MotionCubeTests;
+			productReference = 7B0E0B6619257DB000483A60 /* MotionCubeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7B0E0B3E19257DAF00483A60 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Christopher Polito";
+				TargetAttributes = {
+					7B0E0B6519257DB000483A60 = {
+						TestTargetID = 7B0E0B4519257DAF00483A60;
+					};
+				};
+			};
+			buildConfigurationList = 7B0E0B4119257DAF00483A60 /* Build configuration list for PBXProject "MotionCube" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7B0E0B3D19257DAF00483A60;
+			productRefGroup = 7B0E0B4719257DAF00483A60 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7B0E0B4519257DAF00483A60 /* MotionCube */,
+				7B0E0B6519257DB000483A60 /* MotionCubeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7B0E0B4419257DAF00483A60 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B0E0B5619257DAF00483A60 /* InfoPlist.strings in Resources */,
+				7B0E0B9019259AAF00483A60 /* stop.png in Resources */,
+				7B0E0B8F19259AAF00483A60 /* start.png in Resources */,
+				7B0E0B6119257DAF00483A60 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B0E0B6419257DB000483A60 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B0E0B7319257DB000483A60 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7B0E0B4219257DAF00483A60 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B0E0B8719257E1200483A60 /* Axes.m in Sources */,
+				7B0E0B8619257E1200483A60 /* Accelerometer.m in Sources */,
+				7B0E0B8819257E1200483A60 /* ThreeViewController.m in Sources */,
+				7B0E0B8919257E1200483A60 /* Utility.m in Sources */,
+				7B0E0B5819257DAF00483A60 /* main.m in Sources */,
+				7B0E0B5F19257DAF00483A60 /* MotionCube.xcdatamodeld in Sources */,
+				7B0E0B8C19257E4F00483A60 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7B0E0B6219257DB000483A60 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B0E0B7519257DB000483A60 /* MotionCubeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7B0E0B6D19257DB000483A60 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7B0E0B4519257DAF00483A60 /* MotionCube */;
+			targetProxy = 7B0E0B6C19257DB000483A60 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7B0E0B5419257DAF00483A60 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7B0E0B5519257DAF00483A60 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7B0E0B7119257DB000483A60 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7B0E0B7219257DB000483A60 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7B0E0B7619257DB000483A60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		7B0E0B7719257DB000483A60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7B0E0B7919257DB000483A60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MotionCube/MotionCube-Prefix.pch";
+				INFOPLIST_FILE = "MotionCube/MotionCube-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		7B0E0B7A19257DB000483A60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MotionCube/MotionCube-Prefix.pch";
+				INFOPLIST_FILE = "MotionCube/MotionCube-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		7B0E0B7C19257DB000483A60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MotionCube.app/MotionCube";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MotionCube/MotionCube-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "MotionCubeTests/MotionCubeTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		7B0E0B7D19257DB000483A60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MotionCube.app/MotionCube";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MotionCube/MotionCube-Prefix.pch";
+				INFOPLIST_FILE = "MotionCubeTests/MotionCubeTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7B0E0B4119257DAF00483A60 /* Build configuration list for PBXProject "MotionCube" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B0E0B7619257DB000483A60 /* Debug */,
+				7B0E0B7719257DB000483A60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7B0E0B7819257DB000483A60 /* Build configuration list for PBXNativeTarget "MotionCube" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B0E0B7919257DB000483A60 /* Debug */,
+				7B0E0B7A19257DB000483A60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		7B0E0B7B19257DB000483A60 /* Build configuration list for PBXNativeTarget "MotionCubeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7B0E0B7C19257DB000483A60 /* Debug */,
+				7B0E0B7D19257DB000483A60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7B0E0B5D19257DAF00483A60 /* MotionCube.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7B0E0B5E19257DAF00483A60 /* MotionCube.xcdatamodel */,
+			);
+			currentVersion = 7B0E0B5E19257DAF00483A60 /* MotionCube.xcdatamodel */;
+			path = MotionCube.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 7B0E0B3E19257DAF00483A60 /* Project object */;
+}
