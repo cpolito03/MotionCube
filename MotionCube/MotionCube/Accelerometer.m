@@ -48,7 +48,7 @@
     //integration parameters
     axes = YES; //method
     calCount = 1000; //samples to take during calibration, not implemented
-    totalToStop = 25; //after so many zero acceleration samples, stop cube
+    totalToStop = 25; //after so many zero acceleration samples, stop cube, not implemented
     avgCount = 5; // number of samples to average to find instant of time, very sensitive to smooth motion
     lengthThresh = 0.05; // valid acceleration threshold
     compThresh = 0.005; // threshold for individual acceleration components
@@ -202,18 +202,20 @@
     }
     
     
-    //first integration to find velocity (trapazoidal rule)
+    //first integration to find velocity (first order approximation - interpolation)
     vel1 = [[vel0 axesByAdding:acc0] axesByAdding:[[[acc1 axesBySubtracting:acc0] axesByMultiplyScalar:0.5] axesByMultiplyScalar:interval]];
     
     
-    //second integration to find position
+    //second integration to find position (first order approximation - interpolation)
     position = [[pos0 axesByAdding:vel0] axesByAdding:[[[vel1 axesBySubtracting:vel0] axesByMultiplyScalar:0.5] axesByMultiplyScalar:interval]];
     
     
     //bounce off walls, including disipation of energy on impact
     //X bounce
     if (fabs(position.x) > 6) {
+        // only bounce once until position is less than 6 again
         if (bounceX) {
+            // reverse velocity at wall and dissipate speed
             vel0.x *= -0.9;
             bounceX = NO;
         }
@@ -222,6 +224,7 @@
         }
     }
     else {
+        // set previous velocity for next sample with no change, reset bounce
         vel0.x = vel1.x;
         bounceX = YES;
     }
