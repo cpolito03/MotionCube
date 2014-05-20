@@ -25,8 +25,8 @@
     acc1 = [[Axes alloc] initWithZero];
     vel0 = [[Axes alloc] initWithZero];
     vel1 = [[Axes alloc] initWithZero];
-    pos0 = [[Axes alloc] initWithX:0 Y:0 Z:-20];
-    position = [[Axes alloc] initWithX:0 Y:0 Z:-20];
+    pos0 = [[Axes alloc] initWithX:0 Y:0 Z:-40];
+    position = [[Axes alloc] initWithX:0 Y:0 Z:-40];
     
     for (int i = 0; i < 3; i++) {
         a0[i] = 0;
@@ -43,14 +43,16 @@
     
     axes = YES;
     calCount = 1000;
-    totalToStop = 1;
+    totalToStop = 25;
     avgCount = 5;
-    lengthThresh = 0.01;
+    lengthThresh = 0.05;
     compThresh = 0.005;
     hz = 1/100;
     stopCount = 0;
     
-    factor = 2;
+    bounceX = YES;
+    bounceY = YES;
+    factor = 4;
     
     [self start];
 
@@ -110,7 +112,7 @@
     
     CMAcceleration accel = motion.userAcceleration;
     
-    Axes *calA = [[Axes alloc] initWithX:accel.x*factor Y:accel.y*factor Z:accel.z*factor];
+    Axes *calA = [[Axes alloc] initWithX:accel.x*factor Y:accel.y*factor Z:0];
     
     
     [calibration addObject:calA];
@@ -132,7 +134,7 @@
  
     CMAcceleration accel = motion.userAcceleration;
     
-    Axes *calA = [[Axes alloc] initWithX:(accel.x*factor - zeroAccel.x) Y:(accel.y*factor - zeroAccel.y) Z:(accel.z*factor - zeroAccel.z)];
+    Axes *calA = [[Axes alloc] initWithX:(accel.x*factor - zeroAccel.x) Y:(accel.y*factor - zeroAccel.y) Z:0];
     
     [aAvg addObject:calA];
     
@@ -167,26 +169,59 @@
         acc1 = [[Axes alloc] initWithZero];
     }
     
-    if (acc1.length == 0) {
-        stopCount++;
-    }
-    else {
-        stopCount = 0;
+    if (acc1.x == 0) {
+        vel0.x *= 0.9;
     }
     
-    if (stopCount == totalToStop) {
-        vel1 = [[Axes alloc] initWithZero];
-        vel0 = [[Axes alloc] initWithZero];
-        stopCount = 0;
+    if (acc1.y == 0) {
+        vel0.y *= 0.9;
     }
-    else {
-        vel1 = [[vel0 axesByAdding:acc0] axesByAdding:[[[acc1 axesBySubtracting:acc0] axesByMultiplyScalar:0.5] axesByMultiplyScalar:interval]];
-    }
+    
+    vel1 = [[vel0 axesByAdding:acc0] axesByAdding:[[[acc1 axesBySubtracting:acc0] axesByMultiplyScalar:0.5] axesByMultiplyScalar:interval]];
     
     position = [[pos0 axesByAdding:vel0] axesByAdding:[[[vel1 axesBySubtracting:vel0] axesByMultiplyScalar:0.5] axesByMultiplyScalar:interval]];
     
+//    if (fabs(position.x) < 3) {
+//        bounceX = YES;
+//    }
+//    
+//    if (fabs(position.y) < 4) {
+//        bounceY = YES;
+//    }
+    
+        if (fabs(position.x) > 6) {
+            if (bounceX) {
+                vel0.x = -vel1.x;
+//                pos0.x = 5;
+                bounceX = NO;
+            }
+            else {
+                vel0.x = vel1.x;
+            }
+        }
+        else {
+            vel0.x = vel1.x;
+            bounceX = YES;
+        }
+    
+    
+    
+        if (fabs(position.y) > 15) {
+            if (bounceY) {
+                vel0.y = -vel1.y;
+//                pos0.y = 6;
+                bounceY = NO;
+            }
+            else {
+                vel0.y = vel1.y;
+            }
+        }
+        else {
+            vel0.y = vel1.y;
+            bounceY = YES;
+        }
+    
     acc0 = acc1;
-    vel0 = vel1;
     pos0 = position;
     
 }

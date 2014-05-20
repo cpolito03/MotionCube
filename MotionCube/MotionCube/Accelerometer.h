@@ -62,6 +62,9 @@
     
     double factor;
     
+    BOOL bounceY;
+    BOOL bounceX;
+    
     
     
 }

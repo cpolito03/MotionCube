@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>556C081F-792D-4F49-B369-16AD130A1F93</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MotionCube</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>21334956-4264-4D8A-9098-7158C3CF38D1</key>
+		<string>https://github.com/cpolito03/MotionCube.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MotionCube/MotionCube.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>21334956-4264-4D8A-9098-7158C3CF38D1</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/cpolito03/MotionCube.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>21334956-4264-4D8A-9098-7158C3CF38D1</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>21334956-4264-4D8A-9098-7158C3CF38D1</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MotionCube</string>
+		</dict>
+	</array>
+</dict>
+</plist>
