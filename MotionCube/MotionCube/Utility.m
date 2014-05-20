@@ -10,6 +10,8 @@
 
 @implementation Utility
 
+
+// sum across an array of doubles
 +(double) sum:(NSArray *)array{
     
     double sum = 0;
@@ -22,6 +24,8 @@
     return sum;
 }
 
+
+// average components of Axes objects across an array
 +(Axes *) averageAxes:(NSArray *)array {
     
     NSMutableArray *xArray = [[NSMutableArray alloc] init];
@@ -42,12 +46,15 @@
     return [[Axes alloc] initWithX:xAverage Y:yAverage Z:zAverage];
 }
 
+//average an array of doubles
 +(double) average:(NSArray *)array{
     
     return [Utility sum:array]/[array count];
     
 }
 
+
+// standard deviation of an array of doubles
 +(double) std:(NSArray *)array {
     
     double avg = [Utility average:array];
@@ -66,12 +73,14 @@
     
 }
 
+// maximum and minimum of an array
 +(double) extrm:(NSArray *) array max:(BOOL) which {
     
     double result;
     
     if (which){
         
+        //maximum
         result = -1;
         
         for (int i = 0; i < [array count]; i++){
@@ -82,6 +91,7 @@
         
     }else {
         
+        //minimum
         result = 361;
         
         for (int i = 0; i < [array count]; i++){
@@ -94,7 +104,7 @@
     return result;
 }
 
-
+// convert cosine to sine
 +(double) cosineToSine:(double)cosine
 {
     
@@ -102,6 +112,7 @@
     
 }
 
+// get length of an Axes object
 +(double) length:(Axes *)axes {
     
     return axes.x*axes.x + axes.y*axes.y + axes.z*axes.z;
@@ -109,6 +120,7 @@
 
 
 
+// integration method, from previous unsuccesful attempt
 +(Axes *) rectangle:(NSArray *)array time:(NSArray *)time {
     
     double intX = 0;
@@ -134,6 +146,8 @@
     return [[Axes alloc] initWithX:intX Y:intY Z:intZ];
 }
 
+
+// integration method, from previous unsuccessful attempt,
 +(Axes *) simpson:(NSArray *)array time:(NSArray *)time {
     
     if ([array count] == 3) {

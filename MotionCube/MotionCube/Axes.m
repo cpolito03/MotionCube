@@ -58,6 +58,7 @@
     
 }
 
+// sum components of Axes objects across an array
 +(Axes *)sum:(NSArray *)array{
     
     Axes *sum = [[Axes alloc] initWithZero];
@@ -73,6 +74,7 @@
     
 }
 
+//average components of Axes objects across an array
 +(Axes *)average:(NSArray *)array {
     
     Axes *result = [[Axes alloc] init];
@@ -86,6 +88,7 @@
     return result;
 }
 
+// modify current object
 -(void) plus:(Axes *)axes{
     
     self.x += axes.x;
@@ -93,6 +96,8 @@
     self.z += axes.z;
     
 }
+
+//modify current object
 
 -(void) minus:(Axes *)axes{
     
@@ -102,6 +107,8 @@
     
 }
 
+
+//modify current object
 -(void) multiplyScalar:(double) scalar{
     
     self.x *= scalar;
@@ -110,6 +117,7 @@
 }
 
 
+// add and create new
 -(Axes *) axesByAdding:(Axes *)axes{
     
     Axes *newAxes = [[Axes alloc] init];
@@ -122,6 +130,7 @@
     
 }
 
+// subtract and create new
 -(Axes *) axesBySubtracting:(Axes *)axes{
     
     Axes *newAxes = [[Axes alloc] init];
@@ -134,6 +143,7 @@
     
 }
 
+// scale and create new
 -(Axes *) axesByMultiplyScalar:(double) scalar {
     
     Axes *newAxes = [[Axes alloc] init];
@@ -147,17 +157,20 @@
 }
 
 
-
+// get length of vector
 -(double) length{
     
     return sqrt(self.x*self.x + self.y*self.y + self.z*self.z);
 }
 
+
+// vector dot product
 -(double) dot:(Axes *) axes{
     
     return self.x*axes.x + self.y*axes.y + self.z*axes.z;
 }
 
+// vector cross product, unfinished
 -(Axes *) cross:(Axes *)axes{
     
     return [[Axes alloc] initWithZero];

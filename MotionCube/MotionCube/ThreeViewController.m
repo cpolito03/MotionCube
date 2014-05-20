@@ -14,6 +14,7 @@
 
 
 
+// cube vertices, each face is two triangles (6 points)
 GLfloat gCubeVertexData[216] =
 {
    //x      y      z             nx     ny     nz
@@ -94,12 +95,14 @@ GLfloat gCubeVertexData[216] =
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
-    
+    //calibrating loading view
     wait = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     [wait setFrame:CGRectMake(self.view.frame.size.width/2-wait.frame.size.width/2, self.view.frame.size.height/2 - wait.frame.size.height/2, wait.frame.size.width, wait.frame.size.height)];
     wait.hidesWhenStopped = YES;
     [self.view addSubview:wait];
     
+    
+    //  button creation
     int buttonWidth = 100;
     int buttonHeight = 40;
     UIButton *motionButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -113,6 +116,8 @@ GLfloat gCubeVertexData[216] =
     
     [self setUpGL];
     
+    
+    // object to read acceleration data and integrate position
     accel = [[Accelerometer alloc] init];
     
     doesUpdatePosition = YES;
@@ -143,6 +148,8 @@ GLfloat gCubeVertexData[216] =
 
 - (void)setUpGL
 {
+    
+    //create cube
     [EAGLContext setCurrentContext:self.context];
     
     self.effect = [[GLKBaseEffect alloc] init];
@@ -180,13 +187,14 @@ GLfloat gCubeVertexData[216] =
     
     if (doesUpdatePosition){
         doesUpdatePosition = NO;
+        //change button image for state
         [motionButton setImage:[UIImage imageNamed:@"start"] forState:UIControlStateNormal];
-        [wait stopAnimating];
+        //[wait stopAnimating]; // indicate calibrating stopped
     }
     else {
         doesUpdatePosition = YES;
         [motionButton setImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
-        [wait startAnimating];
+        //[wait startAnimating]; //indicate calibrating started
     }
     
     [accel motion];
@@ -196,6 +204,7 @@ GLfloat gCubeVertexData[216] =
 
 - (void) update
 {
+    // set up aspect perspective
     float aspect = fabsf(self.view.bounds.size.width/self.view.bounds.size.height);
     GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective (GLKMathDegreesToRadians(50.0f), aspect, 0.1f, 100.0f);
     self.effect.transform.projectionMatrix = projectionMatrix;
@@ -204,15 +213,20 @@ GLfloat gCubeVertexData[216] =
     
     if (doesUpdatePosition) {
 
+        // if updating position, read position value from accel object
         modelMatrix = GLKMatrix4MakeTranslation(accel.position.x, accel.position.y, accel.position.z);
         
     }
     else {
+        
+        //if not updating position, always set cube here
         modelMatrix = GLKMatrix4MakeTranslation(0,0,-40);
     }
     
+    // combine translation with rotation, always rotate regardless
     modelMatrix = GLKMatrix4Multiply(modelMatrix, accel.rotation);
 
+    //set transformation matrix
     self.effect.transform.modelviewMatrix = modelMatrix;
     
 }

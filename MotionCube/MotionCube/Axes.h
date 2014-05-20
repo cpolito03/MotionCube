@@ -11,6 +11,8 @@
 @interface Axes : NSObject
 {
     
+    //vector object
+    
     double x;
     double y;
     double z;

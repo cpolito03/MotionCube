@@ -15,12 +15,13 @@
 -(void) motion {
     
 
-    calibrating = YES;
+    calibrating = NO;
     zeroAccel = [[Axes alloc] initWithZero];
     calibration = [[NSMutableArray alloc] init];
     
     aAvg = [[NSMutableArray alloc] init];
     
+    //initially static
     acc0 = [[Axes alloc] initWithZero];
     acc1 = [[Axes alloc] initWithZero];
     vel0 = [[Axes alloc] initWithZero];
@@ -28,6 +29,8 @@
     pos0 = [[Axes alloc] initWithX:0 Y:0 Z:-40];
     position = [[Axes alloc] initWithX:0 Y:0 Z:-40];
     
+    
+    //for array method, not currently working
     for (int i = 0; i < 3; i++) {
         a0[i] = 0;
         a1[i] = 0;
@@ -41,18 +44,20 @@
     p0[2] = -20;
     p1[2] = -20;
     
-    axes = YES;
-    calCount = 1000;
-    totalToStop = 25;
-    avgCount = 5;
-    lengthThresh = 0.05;
-    compThresh = 0.005;
-    hz = 1/100;
-    stopCount = 0;
     
-    bounceX = YES;
-    bounceY = YES;
-    factor = 4;
+    //integration parameters
+    axes = YES; //method
+    calCount = 1000; //samples to take during calibration, not implemented
+    totalToStop = 25; //after so many zero acceleration samples, stop cube
+    avgCount = 5; // number of samples to average to find instant of time, very sensitive to smooth motion
+    lengthThresh = 0.05; // valid acceleration threshold
+    compThresh = 0.005; // threshold for individual acceleration components
+    hz = 1/100; // sample rate
+    stopCount = 0; // initialize totalToStop counter
+    
+    bounceX = YES; // will bounce off horizontal walls
+    bounceY = YES; // will bounce off vertical walls
+    factor = 4; // motion calibration factor, this value determines how "stuck" cube is to the real world
     
     [self start];
 
@@ -70,15 +75,19 @@
         
         if (error == nil){
             
+            //called at intervals a second determined by hz
+            
+            //rotate cube
             [self attitudeChanged:motion];
             
-            if (calibrating)
+            
+            //move cube
+            if (calibrating) {
                 [self calibrate:motion];
+            }
             else {
                 [self findPosition:motion];
-                
             }
-            
         }
         
     }];
@@ -94,7 +103,7 @@
     }
 }
 
-
+//rotate cube
 - (void) attitudeChanged:(CMDeviceMotion *) motion{
     
     CMAttitude *attitude = motion.attitude;
@@ -108,6 +117,8 @@
     
 }
 
+
+//calibration is not necessary for device, acceleration data is calibrated to zero already
 -(void) calibrate:(CMDeviceMotion *) motion {
     
     CMAcceleration accel = motion.userAcceleration;
@@ -134,8 +145,11 @@
  
     CMAcceleration accel = motion.userAcceleration;
     
+    
+    // read raw acceleration data including calibration factor
     Axes *calA = [[Axes alloc] initWithX:(accel.x*factor - zeroAccel.x) Y:(accel.y*factor - zeroAccel.y) Z:0];
     
+    //add data to array to be averaged
     [aAvg addObject:calA];
     
     if ([aAvg count] == avgCount) {
@@ -144,15 +158,20 @@
         
         interval = time1 - time0;
         
+        //choose method
         if (axes) {
+            //works
             [self integrateAxes];
         }
         else {
+            //does not work, but included code
             [self integrateArray];
         }
         
+        //set previous time for next sample
         time0 = time1;
         
+        //reset average container
         aAvg = [[NSMutableArray alloc] init];
         
     }
@@ -161,14 +180,19 @@
 
 -(void) integrateAxes {
     
+    
+    //first filter, average acceleration readings over time to find instant of acceleration
     acc1 = [Axes average:aAvg];
     
     NSLog(@"current accel \n %f \n %f \n %f \n\n", acc1.x, acc1.y, acc1.z);
     
+    
+    //second filter, ignore acceleration data below a threshold
     if (acc1.length <= lengthThresh) {
         acc1 = [[Axes alloc] initWithZero];
     }
     
+    //decelerate on zero acceleration
     if (acc1.x == 0) {
         vel0.x *= 0.9;
     }
@@ -177,50 +201,47 @@
         vel0.y *= 0.9;
     }
     
+    
+    //first integration to find velocity (trapazoidal rule)
     vel1 = [[vel0 axesByAdding:acc0] axesByAdding:[[[acc1 axesBySubtracting:acc0] axesByMultiplyScalar:0.5] axesByMultiplyScalar:interval]];
     
+    
+    //second integration to find position
     position = [[pos0 axesByAdding:vel0] axesByAdding:[[[vel1 axesBySubtracting:vel0] axesByMultiplyScalar:0.5] axesByMultiplyScalar:interval]];
     
-//    if (fabs(position.x) < 3) {
-//        bounceX = YES;
-//    }
-//    
-//    if (fabs(position.y) < 4) {
-//        bounceY = YES;
-//    }
     
-        if (fabs(position.x) > 6) {
-            if (bounceX) {
-                vel0.x = -vel1.x;
-//                pos0.x = 5;
-                bounceX = NO;
-            }
-            else {
-                vel0.x = vel1.x;
-            }
+    //bounce off walls, including disipation of energy on impact
+    //X bounce
+    if (fabs(position.x) > 6) {
+        if (bounceX) {
+            vel0.x *= -0.9;
+            bounceX = NO;
         }
         else {
             vel0.x = vel1.x;
-            bounceX = YES;
         }
-    
-    
-    
-        if (fabs(position.y) > 15) {
-            if (bounceY) {
-                vel0.y = -vel1.y;
-//                pos0.y = 6;
-                bounceY = NO;
-            }
-            else {
-                vel0.y = vel1.y;
-            }
+    }
+    else {
+        vel0.x = vel1.x;
+        bounceX = YES;
+    }
+
+    // Y bounce
+    if (fabs(position.y) > 15) {
+        if (bounceY) {
+            vel0.y *= -0.9;
+            bounceY = NO;
         }
         else {
             vel0.y = vel1.y;
-            bounceY = YES;
         }
+    }
+    else {
+        vel0.y = vel1.y;
+        bounceY = YES;
+    }
     
+    //set previous values for next sample
     acc0 = acc1;
     pos0 = position;
     
