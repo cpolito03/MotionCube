@@ -25,6 +25,7 @@
 
 -(id) initWithZero;
 -(id) initWithX:(double) xCoord Y:(double) yCoord Z:(double) zCoord;
+-(id) initWithPosition;
 -(Axes *) copy;
 
 -(void) setX:(double) xCoord Y:(double)yCoord Z:(double) zCoord;

@@ -44,6 +44,19 @@
     
 }
 
+-(id) initWithPosition {
+    
+    self = [super init];
+    
+    if (self) {
+        self.x = 0;
+        self.y = 0;
+        self.z = -40;
+    }
+    
+    return self;
+}
+
 -(Axes *) copy {
     
     return [[Axes alloc] initWithX:self.x Y:self.y Z:self.z];

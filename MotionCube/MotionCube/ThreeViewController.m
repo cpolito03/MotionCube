@@ -120,8 +120,6 @@ GLfloat gCubeVertexData[216] =
     // object to read acceleration data and integrate position
     accel = [[Accelerometer alloc] init];
     
-    doesUpdatePosition = YES;
-    
     [self toggleUpdatePosition];
     
 }
@@ -183,21 +181,21 @@ GLfloat gCubeVertexData[216] =
 
 -(void) toggleUpdatePosition
 {
+    
+    [accel toggleUpdatePosition];
+    
     UIButton *motionButton = (UIButton *)[self.view viewWithTag:101];
     
-    if (doesUpdatePosition){
-        doesUpdatePosition = NO;
+    if (accel.updatePosition){
         //change button image for state
-        [motionButton setImage:[UIImage imageNamed:@"start"] forState:UIControlStateNormal];
-        //[wait stopAnimating]; // indicate calibrating stopped
+        [motionButton setImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
     }
     else {
-        doesUpdatePosition = YES;
-        [motionButton setImage:[UIImage imageNamed:@"stop"] forState:UIControlStateNormal];
-        //[wait startAnimating]; //indicate calibrating started
+        [motionButton setImage:[UIImage imageNamed:@"start"] forState:UIControlStateNormal];
     }
     
-    [accel motion];
+    
+    
     
 }
 
@@ -211,19 +209,15 @@ GLfloat gCubeVertexData[216] =
     
     GLKMatrix4 modelMatrix;
     
-    if (doesUpdatePosition) {
-
-        // if updating position, read position value from accel object
-        modelMatrix = GLKMatrix4MakeTranslation(accel.position.x, accel.position.y, accel.position.z);
-        
-    }
-    else {
-        
-        //if not updating position, always set cube here
-        modelMatrix = GLKMatrix4MakeTranslation(0,0,-40);
+    if (!accel.updatePosition) {
+        // if not updating position, set to x=0, y=0, z=-40
+        [accel setPosition];
     }
     
-    // combine translation with rotation, always rotate regardless
+    // read accel objects position
+    modelMatrix = GLKMatrix4MakeTranslation(accel.position.x, accel.position.y, accel.position.z);
+    
+    // combine translation with rotation
     modelMatrix = GLKMatrix4Multiply(modelMatrix, accel.rotation);
 
     //set transformation matrix

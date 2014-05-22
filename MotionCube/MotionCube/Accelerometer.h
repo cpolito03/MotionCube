@@ -21,6 +21,8 @@
     
     NSMutableArray *aAvg;
     
+    BOOL updatePosition;
+    
     double interval;
     
     Axes *acc0;
@@ -52,18 +54,27 @@
     NSMutableArray *calibration;
     
     long calCount;
-    int totalToStop;
+    
     int avgCount;
     double lengthThresh;
     double compThresh;
     double hz;
     
+    BOOL friction;
+    double mu;
+    int totalToStop;
     int stopCount;
     
     double factor;
     
+    BOOL bounce;
     BOOL bounceY;
     BOOL bounceX;
+    
+    double xBoundary;
+    double yBoundary;
+    double xLost;
+    double yLost;
     
     
     
@@ -71,7 +82,10 @@
 
 @property (readonly, nonatomic) GLKMatrix4 rotation;
 @property (retain, nonatomic) Axes *position;
+@property (readwrite, nonatomic) BOOL updatePosition;
 
 -(void) motion;
+-(void) toggleUpdatePosition;
+-(void) setPosition;
 
 @end

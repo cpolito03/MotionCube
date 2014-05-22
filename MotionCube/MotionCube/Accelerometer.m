@@ -10,7 +10,18 @@
 
 @implementation Accelerometer
 
-@synthesize rotation, position;
+@synthesize rotation, position, updatePosition;
+
+-(id) init {
+    
+    self = [super init];
+    
+    if (self) {
+        updatePosition = YES;
+    }
+    
+    return self;
+}
 
 -(void) motion {
     
@@ -26,8 +37,8 @@
     acc1 = [[Axes alloc] initWithZero];
     vel0 = [[Axes alloc] initWithZero];
     vel1 = [[Axes alloc] initWithZero];
-    pos0 = [[Axes alloc] initWithX:0 Y:0 Z:-40];
-    position = [[Axes alloc] initWithX:0 Y:0 Z:-40];
+    pos0 = [[Axes alloc] initWithPosition];
+    [self setPosition];
     
     
     //for array method, not currently working
@@ -48,16 +59,30 @@
     //integration parameters
     axes = YES; //method
     calCount = 1000; //samples to take during calibration, not implemented
-    totalToStop = 25; //after so many zero acceleration samples, stop cube, not implemented
+    
     avgCount = 5; // number of samples to average to find instant of time, very sensitive to smooth motion
     lengthThresh = 0.05; // valid acceleration threshold
     compThresh = 0.005; // threshold for individual acceleration components
     hz = 1/100; // sample rate
+    
+    friction = YES;
+    mu = 0.1;
+    totalToStop = 1; //after so many zero acceleration samples, stop cube, not implemented
     stopCount = 0; // initialize totalToStop counter
     
+    bounce = YES;
     bounceX = YES; // will bounce off horizontal walls
     bounceY = YES; // will bounce off vertical walls
-    factor = 4; // motion calibration factor, this value determines how "stuck" cube is to the real world
+    xBoundary = -position.z*8/40;
+    yBoundary = -position.z*17/40;
+    xLost = xBoundary - position.z/8;
+    yLost = yBoundary - position.z/8;
+    
+    
+    
+    factor = 3; // motion calibration factor, this value determines how "stuck" cube is to the real world
+    
+    
     
     [self start];
 
@@ -86,7 +111,8 @@
                 [self calibrate:motion];
             }
             else {
-                [self findPosition:motion];
+                if (updatePosition)
+                    [self findPosition:motion];
             }
         }
         
@@ -101,6 +127,17 @@
     else {
         calibrating = YES;
     }
+}
+
+-(void) toggleUpdatePosition {
+    if (updatePosition) {
+        updatePosition = NO;
+    }
+    else {
+        updatePosition = YES;
+    }
+    
+    [self motion];
 }
 
 //rotate cube
@@ -178,6 +215,11 @@
     
 }
 
+-(void) setPosition {
+    
+    position = [[Axes alloc] initWithPosition];
+}
+
 -(void) integrateAxes {
     
     
@@ -192,15 +234,10 @@
         acc1 = [[Axes alloc] initWithZero];
     }
     
-    //decelerate on zero acceleration
-    if (acc1.x == 0) {
-        vel0.x *= 0.9;
-    }
-    
-    if (acc1.y == 0) {
-        vel0.y *= 0.9;
-    }
-    
+    if (friction)
+        [self friction];
+    else
+        [self stop];
     
     //first integration to find velocity (first order approximation - interpolation)
     vel1 = [[vel0 axesByAdding:acc0] axesByAdding:[[[acc1 axesBySubtracting:acc0] axesByMultiplyScalar:0.5] axesByMultiplyScalar:interval]];
@@ -210,13 +247,57 @@
     position = [[pos0 axesByAdding:vel0] axesByAdding:[[[vel1 axesBySubtracting:vel0] axesByMultiplyScalar:0.5] axesByMultiplyScalar:interval]];
     
     
+    if (bounce)
+        [self bounce];
+    else
+        vel0 = vel1;
+    
+    //set previous values for next sample
+    acc0 = acc1;
+    pos0 = position;
+    
+}
+
+-(void) friction {
+    
+    //decelerate on zero acceleration
+    if (acc1.x == 0) {
+        vel0.x *= (1-mu);
+    }
+    
+    if (acc1.y == 0) {
+        vel0.y *= (1-mu);
+    }
+    
+}
+
+-(void) stop {
+    
+    if (acc1.length == 0) {
+        stopCount++;
+    }
+    else {
+        stopCount = 0;
+    }
+    
+    NSLog(@"stopcount = %d", stopCount);
+    
+    if (stopCount == totalToStop) {
+        vel0 = [[Axes alloc] initWithZero];
+        vel1 = [[Axes alloc] initWithZero];
+        stopCount = 0;
+    }
+}
+
+-(void) bounce {
+    
     //bounce off walls, including disipation of energy on impact
     //X bounce
-    if (fabs(position.x) > 6) {
+    if (fabs(position.x) > xBoundary) {
         // only bounce once until position is less than 6 again
         if (bounceX) {
             // reverse velocity at wall and dissipate speed
-            vel0.x *= -0.9;
+            vel0.x *= (mu-1);
             bounceX = NO;
         }
         else {
@@ -228,11 +309,11 @@
         vel0.x = vel1.x;
         bounceX = YES;
     }
-
+    
     // Y bounce
-    if (fabs(position.y) > 15) {
+    if (fabs(position.y) > yBoundary) {
         if (bounceY) {
-            vel0.y *= -0.9;
+            vel0.y *= (mu-1);
             bounceY = NO;
         }
         else {
@@ -244,10 +325,15 @@
         bounceY = YES;
     }
     
-    //set previous values for next sample
-    acc0 = acc1;
-    pos0 = position;
+    if (fabs(position.x) > xLost && position.x/vel1.x > 0) {
+        [self setPosition];
+        vel0 = [[Axes alloc] initWithZero];
+    }
     
+    if (fabs(position.y) > yLost && position.y/vel1.y > 0) {
+        [self setPosition];
+        vel0 = [[Axes alloc] initWithZero];
+    }
 }
 
 -(void) integrateArray {
