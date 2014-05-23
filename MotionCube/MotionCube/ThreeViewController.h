@@ -7,6 +7,8 @@
 //
 
 #import <GLKit/GLKit.h>
+#import "ParamsViewController.h"
+#import "AccelParams.h"
 
 @class Accelerometer;
 @class Axes;
@@ -21,6 +23,9 @@
     BOOL doesUpdatePosition;
     
     UIActivityIndicatorView *wait;
+    
+    AccelParams *params;
+    
     
 }
 

@@ -23,6 +23,13 @@
     return self;
 }
 
+-(void) setParams:(AccelParams *) accelParams {
+    
+    params = accelParams;
+    
+    [self motion];
+}
+
 -(void) motion {
     
 
@@ -65,14 +72,14 @@
     compThresh = 0.005; // threshold for individual acceleration components
     hz = 1/100; // sample rate
     
-    friction = YES;
-    mu = 0.1;
-    totalToStop = 1; //after so many zero acceleration samples, stop cube, not implemented
+    friction = params.friction;
+    mu = params.mu;
+    totalToStop = params.totalToStop; //after so many zero acceleration samples, stop cube
     stopCount = 0; // initialize totalToStop counter
     
-    bounce = YES;
-    bounceX = YES; // will bounce off horizontal walls
-    bounceY = YES; // will bounce off vertical walls
+    bounce = params.bounce;
+    bounceX = YES; // switch for bounce off horizontal walls
+    bounceY = YES; // switch for bounce off vertical walls
     xBoundary = -position.z*8/40;
     yBoundary = -position.z*17/40;
     xLost = xBoundary - position.z/8;
@@ -80,7 +87,7 @@
     
     
     
-    factor = 3; // motion calibration factor, this value determines how "stuck" cube is to the real world
+    factor = params.factor; // motion calibration factor, this value determines how "stuck" cube is to the real world
     
     
     
@@ -136,8 +143,6 @@
     else {
         updatePosition = YES;
     }
-    
-    [self motion];
 }
 
 //rotate cube

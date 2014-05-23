@@ -82,8 +82,9 @@ GLfloat gCubeVertexData[216] =
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(finishedCal) name:@"doneCalibrating" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setAccelParams:) name:@"paramsSet" object:nil];
     
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
     
@@ -114,15 +115,57 @@ GLfloat gCubeVertexData[216] =
     
     [view addSubview:motionButton];
     
+    
+    
+    UIButton *paramsButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    
+    [paramsButton setFrame:CGRectMake(view.frame.size.width - 100, 30, 100, 30)];
+    [paramsButton setTitle:@"Settings" forState:UIControlStateNormal];
+    [paramsButton addTarget:self action:@selector(gotoSettings) forControlEvents:UIControlEventTouchUpInside];
+    
+    [view addSubview:paramsButton];
+    
+    
     [self setUpGL];
     
     
     // object to read acceleration data and integrate position
     accel = [[Accelerometer alloc] init];
     
+    params = [[AccelParams alloc] init];
+    
+    params.factor = 3;
+    params.friction = YES;
+    params.mu = 0.1;
+    params.bounce = YES;
+    params.totalToStop = 1;
+    
+    [accel setParams:params];
+    
     [self toggleUpdatePosition];
     
 }
+
+-(void) gotoSettings {
+    
+    ParamsViewController *paramsView = [[ParamsViewController alloc] init];
+    
+    paramsView.params  = params;
+    
+    [self presentViewController:paramsView animated:YES completion:nil];
+    
+}
+
+-(void) setAccelParams:(NSNotification *) notification {
+    
+    params = (AccelParams *) notification.object;
+    
+    [accel setParams:params];
+    
+}
+
+
+
 
 -(void) finishedCal {
     
@@ -194,6 +237,8 @@ GLfloat gCubeVertexData[216] =
         [motionButton setImage:[UIImage imageNamed:@"start"] forState:UIControlStateNormal];
     }
     
+    
+    [accel motion];
     
     
     

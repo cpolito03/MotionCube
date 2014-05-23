@@ -9,6 +9,7 @@
 #import <GLKit/GLKit.h>
 #import <CoreMotion/CoreMotion.h>
 #import "Utility.h"
+#import "AccelParams.h"
 
 @class Axes;
 
@@ -24,6 +25,8 @@
     BOOL updatePosition;
     
     double interval;
+    
+    AccelParams *params;
     
     Axes *acc0;
     Axes *acc1;
@@ -84,6 +87,7 @@
 @property (retain, nonatomic) Axes *position;
 @property (readwrite, nonatomic) BOOL updatePosition;
 
+-(void) setParams:(AccelParams *) accelParams;
 -(void) motion;
 -(void) toggleUpdatePosition;
 -(void) setPosition;

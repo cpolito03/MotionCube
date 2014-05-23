@@ -28,6 +28,9 @@
 		7B0E0B8C19257E4F00483A60 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B0E0B8B19257E4F00483A60 /* AppDelegate.m */; };
 		7B0E0B8F19259AAF00483A60 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B0E0B8D19259AAF00483A60 /* start.png */; };
 		7B0E0B9019259AAF00483A60 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = 7B0E0B8E19259AAF00483A60 /* stop.png */; };
+		7B3DCFB2192E968400C420C3 /* AccelParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3DCFB1192E968400C420C3 /* AccelParams.m */; };
+		7B3DCFB5192E9A7D00C420C3 /* ParamsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B3DCFB4192E9A7D00C420C3 /* ParamsViewController.m */; };
+		7B3DCFB7192E9AFB00C420C3 /* ParamsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7B3DCFB6192E9AFB00C420C3 /* ParamsView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,11 @@
 		7B0E0B8B19257E4F00483A60 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7B0E0B8D19259AAF00483A60 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
 		7B0E0B8E19259AAF00483A60 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
+		7B3DCFB0192E968400C420C3 /* AccelParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelParams.h; sourceTree = "<group>"; };
+		7B3DCFB1192E968400C420C3 /* AccelParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelParams.m; sourceTree = "<group>"; };
+		7B3DCFB3192E9A7D00C420C3 /* ParamsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParamsViewController.h; sourceTree = "<group>"; };
+		7B3DCFB4192E9A7D00C420C3 /* ParamsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParamsViewController.m; sourceTree = "<group>"; };
+		7B3DCFB6192E9AFB00C420C3 /* ParamsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParamsView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,10 +145,15 @@
 				7B0E0B8B19257E4F00483A60 /* AppDelegate.m */,
 				7B0E0B7E19257E1200483A60 /* Accelerometer.h */,
 				7B0E0B7F19257E1200483A60 /* Accelerometer.m */,
+				7B3DCFB0192E968400C420C3 /* AccelParams.h */,
+				7B3DCFB1192E968400C420C3 /* AccelParams.m */,
 				7B0E0B8019257E1200483A60 /* Axes.h */,
 				7B0E0B8119257E1200483A60 /* Axes.m */,
 				7B0E0B8219257E1200483A60 /* ThreeViewController.h */,
 				7B0E0B8319257E1200483A60 /* ThreeViewController.m */,
+				7B3DCFB3192E9A7D00C420C3 /* ParamsViewController.h */,
+				7B3DCFB4192E9A7D00C420C3 /* ParamsViewController.m */,
+				7B3DCFB6192E9AFB00C420C3 /* ParamsView.xib */,
 				7B0E0B8419257E1200483A60 /* Utility.h */,
 				7B0E0B8519257E1200483A60 /* Utility.m */,
 				7B0E0B6019257DAF00483A60 /* Images.xcassets */,
@@ -257,6 +270,7 @@
 				7B0E0B5619257DAF00483A60 /* InfoPlist.strings in Resources */,
 				7B0E0B9019259AAF00483A60 /* stop.png in Resources */,
 				7B0E0B8F19259AAF00483A60 /* start.png in Resources */,
+				7B3DCFB7192E9AFB00C420C3 /* ParamsView.xib in Resources */,
 				7B0E0B6119257DAF00483A60 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,10 +290,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B3DCFB5192E9A7D00C420C3 /* ParamsViewController.m in Sources */,
 				7B0E0B8719257E1200483A60 /* Axes.m in Sources */,
 				7B0E0B8619257E1200483A60 /* Accelerometer.m in Sources */,
 				7B0E0B8819257E1200483A60 /* ThreeViewController.m in Sources */,
 				7B0E0B8919257E1200483A60 /* Utility.m in Sources */,
+				7B3DCFB2192E968400C420C3 /* AccelParams.m in Sources */,
 				7B0E0B5819257DAF00483A60 /* main.m in Sources */,
 				7B0E0B5F19257DAF00483A60 /* MotionCube.xcdatamodeld in Sources */,
 				7B0E0B8C19257E4F00483A60 /* AppDelegate.m in Sources */,
@@ -479,6 +495,7 @@
 				7B0E0B7A19257DB000483A60 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7B0E0B7B19257DB000483A60 /* Build configuration list for PBXNativeTarget "MotionCubeTests" */ = {
 			isa = XCConfigurationList;
@@ -487,6 +504,7 @@
 				7B0E0B7D19257DB000483A60 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
