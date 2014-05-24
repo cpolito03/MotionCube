@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#define kFriction @"friction"
+#define kMu @"mu"
+#define kTotalToStop @"kTotalToStop"
+#define kFactor @"factor"
+#define kBounce @"bounce"
+
 @interface AccelParams : NSObject
 {
  

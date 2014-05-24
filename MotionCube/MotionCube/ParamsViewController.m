@@ -38,20 +38,66 @@
     return self;
 }
 
+-(NSString *) getPathWithName:(NSString *) name {
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docDir = [paths objectAtIndex: 0];
+    
+    return [docDir stringByAppendingPathComponent: name];
+    
+}
+
+
+-(void) deleteData {
+    
+    NSString *path = [self getPathWithName:kFileName];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    [fileManager removeItemAtPath:path error:NULL];
+}
+
+-(void) saveAll {
+    
+    NSLog(@" ");
+    NSLog(@"SAVE ALL -----------------------------------");
+    
+    NSString *path = [self getPathWithName:kFileName];
+    
+    if (params) {
+        [NSKeyedArchiver archiveRootObject:params toFile:path];
+    }
+    else {
+        NSLog(@"No data to archive");
+    }
+    
+}
+
+-(void) retrieveAll {
+    
+    NSString *path = [self getPathWithName:kFileName];
+    
+    params = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    
+    if (!params) {
+        params = [[AccelParams alloc] init];
+        
+        params.factor = 3;
+        params.friction = YES;
+        params.mu = 0.1;
+        params.bounce = YES;
+        params.totalToStop = 1;
+    }
+    
+}
+
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     //[self.view addSubview:subview];
-    
-    
-    factorField.text = [NSString stringWithFormat:@"%0.1f", params.factor];
-    muField.text = [NSString stringWithFormat:@"%0.1f", params.mu];
-    [frictionSwitch setOn:params.friction];
-    [bounceSwitch setOn:params.bounce];
-    stopSlider.value = (params.totalToStop-1)/24;
-    
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -75,14 +121,41 @@
     
 }
 
+-(void) viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    
+    
+    [factorSlider setValue:params.factor animated:NO];
+    [muSlider setValue:params.mu animated:NO];
+    [frictionSwitch setOn:params.friction];
+    [bounceSwitch setOn:params.bounce];
+    [stopSlider setValue:params.totalToStop animated:NO];
+    
+    if (frictionSwitch.on) {
+        frictionView.contentOffset = CGPointMake(0, 0);
+    }
+    else {
+        frictionView.contentOffset = CGPointMake(0, frictionView.frame.size.height/2);
+    }
+    
+    NSLog(@"totalToStop is %d", params.totalToStop);
+    NSLog(@"stop slider is %f", stopSlider.value);
+}
+
 -(IBAction)save:(id)sender {
     
     
-    params.factor = [factorField.text doubleValue];
-    params.mu = [muField.text doubleValue];
+    params.factor = factorSlider.value;
+    params.mu = muSlider.value;
     params.friction = frictionSwitch.on;
     params.bounce = bounceSwitch.on;
-    params.totalToStop = 24*stopSlider.value + 1;
+    params.totalToStop = floor(stopSlider.value);
+    
+    NSLog(@"totalToStop is %d", params.totalToStop);
+    NSLog(@"stop slider is %f", stopSlider.value);
+    
+    [self saveAll];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"paramsSet" object:params];
     
@@ -91,10 +164,45 @@
     
 }
 
+-(IBAction)back:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(IBAction)frictionChanged:(id)sender {
+    
+    if (((UISwitch*)sender).on) {
+        
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.5];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        
+        
+        frictionView.contentOffset = CGPointMake(0, 0);
+        
+        [UIView commitAnimations];
+        
+    }
+    else {
+        
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:0.5];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        
+        
+        frictionView.contentOffset = CGPointMake(0, frictionView.frame.size.height/2);
+        
+        [UIView commitAnimations];
+    
+        
+        
+    }
+}
+
 -(void) resign {
  
-    [factorField resignFirstResponder];
-    [muField resignFirstResponder];
+    //[factorField resignFirstResponder];
+    //[muField resignFirstResponder];
     
 }
 

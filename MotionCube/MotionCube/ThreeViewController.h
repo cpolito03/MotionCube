@@ -24,7 +24,7 @@
     
     UIActivityIndicatorView *wait;
     
-    AccelParams *params;
+    ParamsViewController *paramsView;
     
     
 }

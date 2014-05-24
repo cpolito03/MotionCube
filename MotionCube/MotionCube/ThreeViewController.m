@@ -129,18 +129,14 @@ GLfloat gCubeVertexData[216] =
     [self setUpGL];
     
     
+    paramsView = [[ParamsViewController alloc] init];
+    
+    [paramsView retrieveAll];
+    
     // object to read acceleration data and integrate position
     accel = [[Accelerometer alloc] init];
     
-    params = [[AccelParams alloc] init];
-    
-    params.factor = 3;
-    params.friction = YES;
-    params.mu = 0.1;
-    params.bounce = YES;
-    params.totalToStop = 1;
-    
-    [accel setParams:params];
+    [accel setParams:paramsView.params];
     
     [self toggleUpdatePosition];
     
@@ -148,9 +144,9 @@ GLfloat gCubeVertexData[216] =
 
 -(void) gotoSettings {
     
-    ParamsViewController *paramsView = [[ParamsViewController alloc] init];
-    
-    paramsView.params  = params;
+    if (accel.updatePosition) {
+        [self toggleUpdatePosition];
+    }
     
     [self presentViewController:paramsView animated:YES completion:nil];
     
@@ -158,9 +154,7 @@ GLfloat gCubeVertexData[216] =
 
 -(void) setAccelParams:(NSNotification *) notification {
     
-    params = (AccelParams *) notification.object;
-    
-    [accel setParams:params];
+    [accel setParams:(AccelParams *) notification.object];
     
 }
 
